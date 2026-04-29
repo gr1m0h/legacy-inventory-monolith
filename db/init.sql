@@ -59,7 +59,7 @@ CREATE TABLE audit_log (
 -- admin:admin123, user1:password1, test:test
 INSERT INTO users (username, password, email, role) VALUES
 ('admin', '0192023a7bbd73250516f069df18b500', 'admin@example.com', 'admin'),
-('user1', '7c6a180b36896a65c4c202c33cec8fcf', 'user1@example.com', 'user'),
+('user1', '7c6a180b36896a0a8c02787eeafb0e4c', 'user1@example.com', 'user'),
 ('test', '098f6bcd4621d373cade4e832627b4f6', 'test@example.com', 'user');
 
 -- Sample warehouses

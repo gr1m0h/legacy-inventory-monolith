@@ -33,7 +33,7 @@ var API = {
         // VULN: No timeout, no error handling, no retry logic
         $.ajax({
             url: '/api' + url,
-            method: method,
+            type: method,
             headers: headers,
             data: data ? JSON.stringify(data) : undefined,
             contentType: 'application/json',
