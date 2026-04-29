@@ -7,7 +7,7 @@
 ## Overview
 
 A deliberately vulnerable legacy-style monolithic inventory management system.
-Built to demonstrate how modern observability tools (Prometheus, eBPF, SBOM scanners, LLM analysis) can detect issues in legacy systems.
+Built to demonstrate how modern observability tools can detect issues in legacy systems.
 
 ## Architecture
 
