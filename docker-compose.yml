@@ -1,0 +1,60 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:12.4
+    environment:
+      POSTGRES_DB: inventory_db
+      POSTGRES_USER: inventory_admin
+      POSTGRES_PASSWORD: postgres_root_password_123
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - inventory-net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U inventory_admin -d inventory_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: inventory_db
+      DB_USER: inventory_admin
+      DB_PASSWORD: postgres_root_password_123
+      FLASK_ENV: development
+      FLASK_DEBUG: 1
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./backend:/app
+      - /tmp/inventory-exports:/tmp/exports
+    networks:
+      - inventory-net
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    environment:
+      BACKEND_URL: http://backend:5000
+    depends_on:
+      - backend
+    networks:
+      - inventory-net
+
+volumes:
+  pgdata:
+
+networks:
+  inventory-net:
+    driver: bridge

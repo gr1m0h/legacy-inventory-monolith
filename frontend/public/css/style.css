@@ -1,0 +1,203 @@
+/* Legacy Inventory System - Intentionally dated styling */
+body {
+    font-family: "MS Gothic", "Courier New", monospace;
+    margin: 0;
+    padding: 0;
+    background: #e8e8e8;
+    color: #333;
+    font-size: 13px;
+}
+
+.header {
+    background: #336699;
+    color: white;
+    padding: 10px 20px;
+    border-bottom: 3px solid #1a3d66;
+}
+
+.header h1 {
+    margin: 0 0 8px 0;
+    font-size: 16px;
+}
+
+.nav {
+    display: inline-block;
+}
+
+.nav a {
+    color: #cce0ff;
+    text-decoration: none;
+    margin-right: 20px;
+    font-size: 12px;
+}
+
+.nav a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+#user-info {
+    float: right;
+    font-size: 12px;
+}
+
+#user-info a {
+    color: #ffcccc;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 15px auto;
+    padding: 0 15px;
+}
+
+.section {
+    background: white;
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+h2 {
+    color: #336699;
+    font-size: 14px;
+    border-bottom: 1px solid #336699;
+    padding-bottom: 5px;
+    margin-top: 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+}
+
+th {
+    background: #336699;
+    color: white;
+    padding: 5px 8px;
+    text-align: left;
+    font-weight: normal;
+}
+
+td {
+    padding: 4px 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+tr:nth-child(even) {
+    background: #f5f5f5;
+}
+
+tr:hover {
+    background: #e0e8f0;
+}
+
+.search-bar {
+    margin-bottom: 10px;
+    padding: 8px;
+    background: #f0f0f0;
+    border: 1px solid #ccc;
+}
+
+.search-bar input,
+.search-bar select {
+    padding: 4px 8px;
+    border: 1px solid #999;
+    font-family: inherit;
+    font-size: 12px;
+}
+
+.search-bar button,
+button {
+    padding: 4px 12px;
+    background: #336699;
+    color: white;
+    border: 1px solid #1a3d66;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 12px;
+}
+
+button:hover {
+    background: #4477aa;
+}
+
+.form-group {
+    margin-bottom: 8px;
+}
+
+.form-group label {
+    display: inline-block;
+    width: 100px;
+}
+
+.form-group input {
+    padding: 4px 8px;
+    border: 1px solid #999;
+    width: 200px;
+    font-family: inherit;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.warning {
+    color: #cc6600;
+    font-weight: bold;
+}
+
+.low-stock {
+    color: red;
+    font-weight: bold;
+}
+
+#status-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #336699;
+    color: white;
+    padding: 3px 15px;
+    font-size: 11px;
+}
+
+.clickable {
+    cursor: pointer;
+    color: #336699;
+    text-decoration: underline;
+}
+
+.pagination {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.pagination a {
+    margin: 0 5px;
+    color: #336699;
+}
+
+.summary-card {
+    display: inline-block;
+    border: 1px solid #ccc;
+    padding: 10px 15px;
+    margin: 5px;
+    background: #f9f9f9;
+    min-width: 150px;
+}
+
+.summary-card .value {
+    font-size: 18px;
+    font-weight: bold;
+    color: #336699;
+}
+
+.summary-card .label {
+    font-size: 11px;
+    color: #666;
+}

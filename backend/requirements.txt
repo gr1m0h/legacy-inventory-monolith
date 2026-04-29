@@ -1,0 +1,26 @@
+# VULN: Intentionally old packages with known CVEs
+# This is an educational demo - DO NOT use in production
+
+Flask==0.12.5
+Werkzeug==0.12.2
+Jinja2==2.9.6
+MarkupSafe==1.1.1
+itsdangerous==0.24
+click==6.7
+
+# Database
+psycopg2==2.7.7
+
+# VULN: CVE-2017-18342 - yaml.load() arbitrary code execution
+PyYAML==3.13
+
+# VULN: Multiple CVEs in old requests
+requests==2.20.0
+urllib3==1.24.1
+certifi==2019.3.9
+chardet==3.0.4
+idna==2.7
+
+# VULN: Old python-dateutil
+python-dateutil==2.6.0
+six==1.12.0

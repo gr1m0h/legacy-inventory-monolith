@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %}倉庫詳細 - {{ warehouse.name }}{% endblock %}
+
+{% block content %}
+{# VULN: IDOR - this page is accessible without authentication #}
+{# Any user can view any warehouse by changing the ID in the URL #}
+
+<h1>倉庫詳細: {{ warehouse.name | safe }}</h1>
+
+<table>
+    <tr><th>項目</th><th>内容</th></tr>
+    <tr><td>ID</td><td>{{ warehouse.id }}</td></tr>
+    <tr><td>名称</td><td>{{ warehouse.name | safe }}</td></tr>
+    <tr><td>所在地</td><td>{{ warehouse.location | safe }}</td></tr>
+    <tr><td>管理者</td><td>{{ warehouse.manager_name }}</td></tr>
+    {# VULN: Exposes manager email without auth #}
+    <tr><td>管理者メール</td><td>{{ warehouse.manager_email }}</td></tr>
+    <tr><td>容量</td><td>{{ warehouse.capacity }}</td></tr>
+</table>
+
+<h2 style="margin-top: 20px;">在庫一覧</h2>
+<table>
+    <tr>
+        <th>SKU</th>
+        <th>商品名</th>
+        <th>カテゴリ</th>
+        <th>数量</th>
+        <th>単価</th>
+        <th>在庫金額</th>
+    </tr>
+    {% for item in inventory %}
+    <tr>
+        <td>{{ item.sku }}</td>
+        {# VULN: XSS - unescaped output #}
+        <td>{{ item.product_name | safe }}</td>
+        <td>{{ item.category }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>&yen;{{ item.unit_price }}</td>
+        <td>&yen;{{ item.quantity * item.unit_price }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h2 style="margin-top: 20px;">最近の入出庫</h2>
+<table>
+    <tr>
+        <th>種別</th>
+        <th>商品</th>
+        <th>数量</th>
+        <th>備考</th>
+        <th>担当者</th>
+        <th>日時</th>
+    </tr>
+    {% for mov in movements %}
+    <tr>
+        <td>{{ "入庫" if mov.movement_type == "IN" else "出庫" }}</td>
+        <td>{{ mov.product_name }}</td>
+        <td>{{ mov.quantity }}</td>
+        {# VULN: XSS - notes field not escaped #}
+        <td>{{ mov.notes | safe }}</td>
+        <td>{{ mov.created_by_name }}</td>
+        <td>{{ mov.created_at }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<div style="margin-top: 15px;">
+    <a href="/api/reports/export/{{ warehouse.id }}">CSVエクスポート</a> |
+    <a href="/api/warehouses">← 倉庫一覧に戻る</a>
+</div>
+{% endblock %}

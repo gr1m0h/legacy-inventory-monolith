@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}在庫管理システム{% endblock %}</title>
+    <style>
+        body { font-family: "MS Gothic", monospace; margin: 20px; background: #f0f0f0; }
+        table { border-collapse: collapse; width: 100%; background: white; }
+        th, td { border: 1px solid #999; padding: 6px 10px; text-align: left; font-size: 13px; }
+        th { background: #336699; color: white; }
+        tr:nth-child(even) { background: #e8e8e8; }
+        h1 { color: #336699; font-size: 18px; border-bottom: 2px solid #336699; padding-bottom: 5px; }
+        .container { max-width: 1000px; margin: 0 auto; }
+        .warning { color: red; font-weight: bold; }
+        a { color: #336699; }
+        .nav { background: #336699; padding: 8px 15px; margin-bottom: 20px; }
+        .nav a { color: white; text-decoration: none; margin-right: 15px; }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a href="/">トップ</a>
+        <a href="/api/inventory?format=html">在庫一覧</a>
+        <a href="/api/warehouses">倉庫一覧</a>
+        <a href="/api/reports/summary">レポート</a>
+    </div>
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+    <footer style="margin-top: 20px; font-size: 11px; color: #666;">
+        Legacy Inventory System v1.0 - Internal Use Only
+    </footer>
+</body>
+</html>

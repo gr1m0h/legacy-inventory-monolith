@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}在庫詳細 - {{ item.product_name }}{% endblock %}
+
+{% block content %}
+<h1>在庫詳細</h1>
+
+<table>
+    <tr>
+        <th>項目</th>
+        <th>内容</th>
+    </tr>
+    <tr>
+        <td>ID</td>
+        <td>{{ item.id }}</td>
+    </tr>
+    <tr>
+        <td>SKU</td>
+        <td>{{ item.sku }}</td>
+    </tr>
+    <tr>
+        <td>商品名</td>
+        {# VULN: XSS - product_name rendered without escaping using |safe filter #}
+        <td>{{ item.product_name | safe }}</td>
+    </tr>
+    <tr>
+        <td>説明</td>
+        {# VULN: XSS - description rendered without escaping #}
+        <td>{{ item.description | safe }}</td>
+    </tr>
+    <tr>
+        <td>カテゴリ</td>
+        <td>{{ item.category }}</td>
+    </tr>
+    <tr>
+        <td>数量</td>
+        <td>{{ item.quantity }}</td>
+    </tr>
+    <tr>
+        <td>単価</td>
+        <td>&yen;{{ item.unit_price }}</td>
+    </tr>
+    <tr>
+        <td>倉庫</td>
+        {# VULN: XSS - warehouse_name not escaped #}
+        <td>{{ item.warehouse_name | safe }}</td>
+    </tr>
+    <tr>
+        <td>登録日</td>
+        <td>{{ item.created_at }}</td>
+    </tr>
+    <tr>
+        <td>更新日</td>
+        <td>{{ item.updated_at }}</td>
+    </tr>
+</table>
+
+<div style="margin-top: 15px;">
+    <a href="/api/inventory">← 在庫一覧に戻る</a>
+</div>
+{% endblock %}
